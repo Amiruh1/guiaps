@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía APS · Semanas 1–15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: guía de estudio clara y ordenada, como un buen apunte de repaso
+   IDEA: el sílabo del curso convertido en un mapa de 15 semanas
+   PICTURE: mapa de recorrido por fases (fundamentos → planificación → ejecución → liderazgo y mejora)
+   COLOUR and TYPE: blanco, tinta #101418, amarillo #ffd84a (el de las diapositivas UPN), pizarra; Manrope
+   LAYOUT: hero con mapa, barra de secciones, resumen por semana, glosario con buscador, preguntas en modo práctica */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#101418);--ink:light-dark(#101418,#eef1f4);--soft:light-dark(#4a5560,#a9b3bd);
+--line:light-dark(#e3e7eb,#262d35);--card:light-dark(#f6f7f9,#171d24);--y:#ffd84a;--yink:#101418;
+--slate:light-dark(#3d4a57,#8fa0b1);--acc:light-dark(#b0461e,#ff9c6e)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Manrope,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,5vw,52px);font-weight:800}
+h2{font-size:clamp(26px,3.4vw,36px);font-weight:800}
+h3{font-size:20px;font-weight:700}
+p{margin:.4em 0 .8em;max-width:70ch}
+a{color:inherit}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+.hero{background:var(--y);color:var(--yink)}
+.hero .wrap{display:grid;gap:28px}
+.hero p.lead{font-size:17px;max-width:62ch;color:#2b2f33}
+.kick{font-size:14px;font-weight:600;color:#3b3f44}
+.map{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.ph{background:#fff;border-radius:14px;padding:16px;box-shadow:0 2px 0 rgba(0,0,0,.08)}
+.ph b{display:block;font-size:15px;margin-bottom:2px}
+.ph small{display:block;color:#5a6067;font-size:13px;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0 10px;border-radius:10px;background:#101418;color:#ffd84a;font-weight:800;text-decoration:none;font-size:15px}
+.chip:hover,.chip:focus-visible{background:#b0461e;color:#fff;outline:none}
+@media(max-width:860px){.map{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.map{grid-template-columns:minmax(0,1fr)}}
+nav.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:6px;flex-wrap:wrap;padding:8px max(5vw,16px);align-items:center}
+nav.top a{padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px}
+nav.top a:hover,nav.top a:focus-visible{background:var(--card);outline:none}
+@media(max-width:900px){nav.top{position:static}}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.sec-head p{color:var(--soft);margin:6px 0 0}
+.week{border-top:1px solid var(--line);padding:28px 0;display:grid;grid-template-columns:180px minmax(0,1fr);gap:24px}
+.week .num{font-size:52px;font-weight:800;line-height:1;color:var(--slate)}
+.week .num span{display:block;font-size:13px;font-weight:600;color:var(--soft);margin-top:6px}
+.week .num em{display:inline-block;margin-top:10px;font-style:normal;font-size:13px;font-weight:700;background:var(--y);color:var(--yink);padding:3px 8px;border-radius:6px}
+@media(max-width:700px){.week{grid-template-columns:minmax(0,1fr);gap:10px}.week .num{font-size:40px}}
+.logro{color:var(--soft);font-size:15px;border-left:3px solid var(--y);padding-left:12px}
+.week ul{padding-left:20px;margin:.4em 0 1em}
+.week li{margin:.3em 0;max-width:75ch}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:12px 0}
+.box{background:var(--card);border-radius:12px;padding:14px 16px}
+.box h4{margin:0 0 6px;font-size:15px}
+.box p,.box ul{font-size:15px;margin:0}
+.concl{font-size:15px;background:var(--card);border-radius:12px;padding:12px 16px}
+.concl b{display:block;margin-bottom:4px}
+.note{font-size:14px;border:1px dashed var(--acc);border-radius:10px;padding:10px 14px;color:var(--ink)}
+.note b{color:var(--acc)}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{font-weight:700;background:var(--card)}
+td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+.formula{font-weight:800;background:var(--y);color:var(--yink);display:inline-block;padding:2px 8px;border-radius:6px;white-space:nowrap}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input[type=search],select{font:inherit;font-size:16px;min-height:44px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+input[type=search]{width:min(360px,100%)}
+input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+button{font:inherit;font-weight:700;min-height:44px;padding:8px 14px;border-radius:10px;border:0;background:var(--ink);color:var(--bg);cursor:pointer}
+.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.term{background:var(--card);border-radius:12px;padding:12px 14px}
+.term b{display:block}
+.term span{font-size:15px;color:var(--soft)}
+.term small{display:inline-block;margin-top:6px;font-size:13px;font-weight:700;color:var(--slate)}
+.empty{color:var(--soft);padding:10px 0}
+.qweek{margin:22px 0 8px;font-size:17px;font-weight:800}
+details{border:1px solid var(--line);border-radius:12px;margin:8px 0;background:var(--bg)}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;min-height:44px;list-style:none;display:flex;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";font-weight:800;color:var(--acc);flex:none;width:14px}
+details[open] summary::before{content:"–"}
+details .a{padding:0 16px 14px 40px;color:var(--ink);font-size:15px}
+.count{font-size:14px;color:var(--soft)}
+@media(max-width:600px){table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;font-weight:700;white-space:normal}}
+footer{border-top:1px solid var(--line);color:var(--soft);font-size:14px}
+</style>
+</head>
+<body>
+
+<header class="band hero">
+  <div class="wrap">
+    <div>
+      <div class="kick">UPN · Administración de Proyectos de Software · Semanas 1 a 15</div>
+      <h1>Guía de estudio del curso</h1>
+      <p class="lead">Resumen de las 15 sesiones, glosario de términos y preguntas con respuesta para repasar. Toca una semana del mapa para ir directo a ella.</p>
+    </div>
+    <div class="map" aria-label="Mapa del curso por fases">
+      <div class="ph"><b>Fundamentos</b><small>Conceptos, estándares y equipo</small><div class="chips"><a class="chip" href="#s1">1</a><a class="chip" href="#s2">2</a><a class="chip" href="#s3">3</a></div></div>
+      <div class="ph"><b>Planificación</b><small>Alcance, recursos, cronograma, costos, calidad, riesgos</small><div class="chips"><a class="chip" href="#s4">4</a><a class="chip" href="#s5">5</a><a class="chip" href="#s6">6</a><a class="chip" href="#s7">7</a></div></div>
+      <div class="ph"><b>Ejecución y control</b><small>Ágil, comunicación, riesgos, cambios, métricas</small><div class="chips"><a class="chip" href="#s8">8</a><a class="chip" href="#s9">9</a><a class="chip" href="#s10">10</a><a class="chip" href="#s11">11</a></div></div>
+      <div class="ph"><b>Liderazgo y mejora</b><small>Equipo, valor, conflictos, cambio y PDCA</small><div class="chips"><a class="chip" href="#s12">12</a><a class="chip" href="#s13">13</a><a class="chip" href="#s14">14</a><a class="chip" href="#s15">15</a></div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="top" aria-label="Secciones"><div class="wrap">
+  <a href="#resumen">Resumen</a><a href="#glosario">Glosario</a><a href="#preguntas">Preguntas y respuestas</a>
+</div></nav>
+
+<main>
+<section class="band" id="resumen"><div class="wrap">
+  <div class="sec-head"><div><h2>Resumen por semana</h2><p>Lo esencial de cada sesión: logro, temas clave y conclusiones.</p></div></div>
+
+  <article class="week" id="s1"><div class="num">01<span>Conceptos básicos de administración de proyectos</span></div><div>
+    <p class="logro">Identificar los conceptos básicos de la gestión de proyectos y los elementos de la triple restricción para planificar con eficiencia.</p>
+    <ul>
+      <li><b>Proyecto:</b> esfuerzo temporal para crear un producto, servicio o resultado único.</li>
+      <li><b>Triple restricción:</b> alcance, tiempo y costo. La <b>restricción extendida</b> suma calidad, recursos humanos y riesgos.</li>
+      <li><b>Dimensiones:</b> un <b>programa</b> agrupa proyectos relacionados (proyecto 1…N); un <b>portafolio</b> agrupa programas y proyectos según la estrategia (ej. portafolio de productos de un banco: cuentas, tarjetas). La <b>PMO</b> centraliza metodología y soporte, capacitación, QA/consultoría, portafolio y recursos de proyectos.</li>
+      <li><b>Ciclos de vida:</b> <b>cascada</b> (requisitos → factibilidad → planificación → diseño → construcción → pruebas → entrega) e <b>incremental</b> (iteraciones de análisis, diseño, codificación y pruebas que generan versiones 1, 2, 3…).</li>
+      <li><b>FAE</b> (factores ambientales de la empresa): condiciones fuera del control del equipo que influyen, restringen o dirigen el proyecto.</li>
+      <li><b>APO</b> (activos de los procesos de la organización): planes, procesos, políticas, procedimientos y bases de conocimiento propios de la organización.</li>
+      <li><b>Director de proyectos:</b> no necesita saber hacer el rol de cada integrante, pero sí aportar conocimiento, liderazgo, planificación y coordinación mediante comunicación escrita (planes, cronogramas) y en tiempo real (reuniones).</li>
+      <li><b>Habilidades estratégicas y de negocio:</b> según el PMI, la destreza técnica no basta; el mercado exige además liderazgo e inteligencia de negocios.</li>
+    </ul>
+    <div class="concl"><b>Conclusiones</b>Un jefe de proyectos debe dominar diversas actividades de gestión; conocer herramientas no basta, también hay que saber hacia dónde va la empresa.</div>
+  </div></article>
+
+  <article class="week" id="s2"><div class="num">02<span>Relación de proyectos con CMMI, PMBOK y SWEBOK</span></div><div>
+    <p class="logro">Relacionar la gestión de proyectos con estándares de la industria como sustento teórico de las buenas prácticas.</p>
+    <h3>CMMI: 5 niveles de madurez</h3>
+    <div class="scroll"><table class="stack"><thead><tr><th>Nivel</th><th>Proceso</th><th>Qué significa</th></tr></thead><tbody>
+      <tr><td>1 Inicial</td><td>Impredecible</td><td>Se puede producir buen software, pero a un costo financiero y humano muy alto.</td></tr>
+      <tr><td>2 Repetible</td><td>Disciplinado</td><td>Control administrativo básico; se cumplen compromisos de costo, cronograma y requisitos.</td></tr>
+      <tr><td>3 Definido</td><td>Estándar</td><td>Procesos documentados, estandarizados y consistentes en toda la organización.</td></tr>
+      <tr><td>4 Manejado</td><td>Predecible</td><td>Objetivos cuantitativos de calidad para producto y proceso.</td></tr>
+      <tr><td>5 Optimizado</td><td>Mejora continua</td><td>Proceso proactivo para prevenir errores; análisis costo/beneficio de nuevas tecnologías y métodos.</td></tr>
+    </tbody></table></div>
+    <ul>
+      <li><b>SWEBOK</b> (cuerpo de conocimiento de ingeniería de software): conocimiento “generalmente aceptado”, aplicable a la mayoría de proyectos la mayoría de las veces. 15 áreas: requerimientos, diseño, construcción, pruebas, mantenimiento, gestión de configuración, gestión de la ingeniería de SW, procesos, modelos y métodos, calidad, práctica profesional, economía de la ingeniería de SW, y fundamentos de computación, matemáticos y de ingeniería.</li>
+      <li><b>PMBOK</b> (PMI): áreas de conocimiento de la dirección de proyectos: integración, alcance, tiempo, costos, calidad, recursos humanos, comunicaciones, riesgos, adquisiciones e interesados.</li>
+    </ul>
+    <div class="cols">
+      <div class="box"><h4>Predictivo (cascada)</h4><p>Plan por adelantado contra una línea base; cambios por junta formal. Bien para contratos, permisos o algo físico; mal si los requisitos cambian seguido.</p></div>
+      <div class="box"><h4>Ágil</h4><p>Incrementos cada 2–4 semanas; el alcance se reprioriza según lo aprendido. Reduce riesgo descubriendo pronto qué necesita el usuario; mal si alcance y presupuesto están fijados por contrato.</p></div>
+      <div class="box"><h4>Híbrido</h4><p>Cascada para lo contractual y predecible, ágil para lo incierto; la mezcla se negocia a propósito. Falla sin un responsable que asuma el costo de la interfaz entre ambos.</p></div>
+    </div>
+    <div class="concl"><b>Conclusiones</b>No basta con conocer las herramientas: hay que saber cómo aplicarlas.</div>
+  </div></article>
+
+  <article class="week" id="s3"><div class="num">03<span>Crear un equipo de alto desempeño</span></div><div>
+    <p class="logro">Comprender, a partir de la Ley 29973, que todas las personas pueden integrar un equipo de proyecto de alto rendimiento.</p>
+    <ul>
+      <li><b>Código de ética del PMI:</b> cuatro valores: <b>responsabilidad</b> (hacerse cargo de decisiones y consecuencias), <b>respeto</b> (por personas y recursos confiados), <b>equidad</b> (decidir de forma imparcial, sin conflictos de interés ni favoritismos) y <b>honestidad</b> (decir la verdad en comunicación y conducta).</li>
+      <li><b>Diversidad cultural:</b> existencia e inclusión de distintas culturas y perspectivas en la organización.</li>
+      <li><b>Cuatro dimensiones de diversidad:</b> cognitiva (mejora la calidad de decisión técnica y reduce el <i>groupthink</i>), idiomática y cultural, generacional y de género (amplía el alcance de usuario) y geográfica y horaria (cobertura operativa continua).</li>
+      <li><b>Prácticas:</b> reclutamiento con paneles diversos, rituales interculturales con facilitadores rotativos y comunicación asíncrona por defecto.</li>
+      <li><b>Equipo interdisciplinario:</b> influencia positiva, comunicación, visión de negocio, apoyo a la estrategia, proponer mejoras, aceptar retroalimentación y entender que el logro es de todo el equipo.</li>
+      <li><b>Equipo de élite:</b> se autoadministra, se automotiva, se apoya mutuamente, acepta críticas y propone mejoras.</li>
+      <li><b>Herramientas colaborativas:</b> tableros digitales y repositorio de trabajo compartido.</li>
+    </ul>
+    <div class="concl"><b>Conclusiones</b>Las personas con discapacidad suelen aportar gran valor porque desarrollan habilidades que otros no tienen. Referencia: Ley general de la persona con discapacidad N.º 29973.</div>
+  </div></article>
+
+  <article class="week" id="s4"><div class="num">04<span>Iniciando el proyecto</span></div><div>
+    <p class="logro">Iniciar el proyecto y planificar su alcance y sus recursos.</p>
+    <ul>
+      <li><b>Metodología:</b> las áreas de conocimiento se cruzan con los 5 grupos de procesos: inicio, planificación, ejecución, control y cierre. Integración participa en los cinco; interesados en inicio, planificación, ejecución y control.</li>
+      <li><b>Gestión del alcance:</b> definir qué trabajo se hará y asegurar que se haga ese trabajo y solo ese. Distingue alcance del <b>producto</b> y alcance del <b>proyecto</b>.</li>
+      <li><b>Planificar la gestión del alcance:</b> entradas (acta de constitución, plan para la dirección, FAE, APO), herramientas (juicio de expertos, análisis de datos y de alternativas, reuniones) y salidas (plan de gestión del alcance y plan de gestión de requisitos). Luego se identifica la lista de requisitos.</li>
+      <li><b>Definir actividades:</b> documentar el trabajo hasta el nivel más bajo de la <b>EDT/WBS</b> (paquetes de trabajo); es base para estimar, programar y controlar. La EDT puede organizarse por paquetes de trabajo, por fases o por entregables principales.</li>
+      <li><b>Recursos:</b> definir roles, responsabilidades y líneas de reporte (organigrama: rol, responsabilidad, autoridad) y elaborar el plan de recursos humanos.</li>
+      <li><b>Matriz RAM / RACI:</b> conecta trabajo con personas: <b>R</b>esponsable (ejecuta), <b>A</b>ccountable (rinde cuentas), <b>C</b>onsultado, <b>I</b>nformado.</li>
+      <li><b>Plan de RR. HH. incluye:</b> adquisición de personal, calendario de recursos (histograma), plan de liberación, necesidades de formación y reconocimientos y recompensas.</li>
+    </ul>
+    <div class="scroll"><table><thead><tr><th>Entregable</th><th>Rol 1</th><th>Rol 2</th><th>Rol 3</th><th>Rol 4</th><th>Rol 5</th></tr></thead><tbody>
+      <tr><td>Definir</td><td>I</td><td>A</td><td>R</td><td>I</td><td>I</td></tr>
+      <tr><td>Diseñar</td><td>A</td><td>I</td><td>I</td><td>R</td><td>C</td></tr>
+      <tr><td>Desarrollar</td><td>A</td><td>C</td><td>R</td><td>C</td><td>I</td></tr>
+      <tr><td>Probar</td><td>A</td><td>I</td><td>R</td><td>C</td><td>R</td></tr>
+    </tbody></table></div>
+    <div class="concl"><b>Conclusiones</b>Los recursos humanos son el elemento más sensible del proyecto; lo que más control requiere es la triple restricción, y el cliente siempre quiere ver cómo se ejecuta el gasto.</div>
+  </div></article>
+
+  <article class="week" id="s5"><div class="num">05<span>Planificando el proyecto</span></div><div>
+    <p class="logro">Desarrollar el cronograma y el presupuesto, entendiendo la importancia de la línea base de costos.</p>
+    <ul>
+      <li><b>Planificar el cronograma:</b> salida = plan de gestión del cronograma (modelo de programación, nivel de exactitud, unidades de medida, umbrales de control). Luego se <b>secuencian</b> las actividades (dependencias en red) y se <b>estima su duración</b> (ej. alquilar equipo 3d, transportar materiales 1d…).</li>
+      <li><b>Línea base del cronograma:</b> versión aprobada del modelo de programación; solo cambia por control formal de cambios y sirve para comparar con lo real.</li>
+      <li><b>Estimar costos:</b> se aproxima el costo de los recursos de cada actividad (personas y equipos: horas × tarifa). En el ejemplo de cableado, el total es S/ 17 700.</li>
+      <li><b>Técnicas de estimación:</b> juicio de expertos, <b>análoga</b> (proyectos anteriores), <b>paramétrica</b> (ej. Y = 5X + 4), <b>ascendente</b> (de abajo hacia arriba), <b>tres valores</b> <span class="formula">(O + 4MP + P) / 6</span>, análisis de alternativas, costo de la calidad, PMIS (MS Project) y toma de decisiones (Delphi, lluvia de ideas).</li>
+      <li><b>Determinar el presupuesto:</b> línea base de costos + <b>reserva de contingencia</b> (8 % en el ejemplo) + <b>reserva de gestión</b> (2 %) = costo total del proyecto.</li>
+      <li><b>Planificación adaptativa:</b> la “cebolla de planificación” ágil va de lo general a lo diario: visión → roadmap → release → iteración → diario. Se apoya en límites WIP y políticas explícitas de flujo.</li>
+      <li><b>Herramientas:</b> cronograma en MS Project, Jira o Trello; presupuesto en Excel, Asana o ProjectManager.</li>
+    </ul>
+    <div class="concl"><b>Conclusiones</b>La gestión del cronograma sincera cuánto demora el alcance; la calidad la define el cliente según lo que necesita.</div>
+  </div></article>
+
+  <article class="week" id="s6"><div class="num">06<span>Cronograma, calidad e integración</span><em>Evaluación T1</em></div><div>
+    <p class="logro">Integrar los temas de planificación vistos (T1): cronograma, calidad e integración de la planificación.</p>
+    <ul>
+      <li>Repaso de planificación del cronograma, secuencia, duración y línea base (ver semana 5).</li>
+      <li><b>Análisis costo-beneficio de la calidad:</b> cumplir requisitos de calidad reduce el reproceso → más productividad, menores costos y más satisfacción.</li>
+      <li><b>Diseño de experimentos:</b> método estadístico que cambia sistemáticamente todos los factores importantes (no uno a uno) para hallar cuál influye más en el resultado.</li>
+      <li><b>Reuniones de planificación de calidad:</b> gerente, sponsor, miembros del equipo e interesados seleccionados.</li>
+      <li><b>Salidas:</b> plan de gestión de calidad (cubre control de calidad QC, aseguramiento QA y mejora continua), <b>métricas de calidad</b> (ej. tiempo de respuesta = 2 s; índice de fallas) y <b>listas de control</b> (“¡Haga esto!” / “¿Ha hecho esto?”).</li>
+      <li><b>Integrar la planificación:</b> a esta altura ya están planificados integración, alcance, tiempo, costos, calidad y RR. HH.; faltan comunicaciones, riesgos y adquisiciones.</li>
+    </ul>
+    <div class="concl"><b>Conclusiones</b>Además de lo anterior, el proyecto define estándares o mejores prácticas que garantizan su calidad.</div>
+  </div></article>
+
+  <article class="week" id="s7"><div class="num">07<span>Calidad, adquisiciones, gobernanza y riesgos</span></div><div>
+    <p class="logro">Planificar adquisiciones, estructurar la gobernanza y determinar riesgos, con uso responsable de IA y atención a personas con discapacidad.</p>
+    <ul>
+      <li><b>Adquisición de software:</b> tipos (sistema operativo, paquete de usuario final, aplicativos, software autorizado); factores (lista de requerimientos, solicitud de propuestas, evaluar alternativas, contactar usuarios, financiamiento, negociación). Usar software no autorizado es piratería.</li>
+      <li><b>Hacer o comprar:</b> se iguala el costo de ambas opciones. Ej.: alquilar a $800/día vs. comprar a $12 000 + $400/día → <span class="formula">800d = 12 000 + 400d → d = 30</span>. Si se usa más de 30 días, conviene comprar.</li>
+      <li><b>Contratos de precio fijo:</b> FFP (precio fijo cerrado), FPIF (precio fijo más honorarios con incentivos) y FP-EPA (precio fijo con ajuste económico).</li>
+      <li><b>SOW (enunciado del trabajo):</b> describe lo que se compra; secciones: enunciado, ubicación, período, cronograma de entregables, estándares, criterios de aceptación y requerimientos especiales.</li>
+      <li><b>Gobernanza:</b> marco de funciones y procesos que guía la dirección del proyecto para cumplir metas organizacionales (PMBOK, 2017).</li>
+      <li><b>Riesgos:</b> categorías tecnológicas, de RR. HH. y de procesos. <span class="formula">Severidad = Probabilidad × Impacto</span>. La matriz crece con: trigger (disparador), propietario, respuesta estratégica (evitar, mitigar, aceptar), fechas, costo de contingencia y recursos.</li>
+      <li><b>IA generativa responsable:</b> ayuda a anticipar riesgos, redactar supuestos, perfilar interesados y comparar alternativas, pero la validación, el contexto local y la decisión final son humanos. Nunca subir código propietario, tokens ni datos reales de clientes.</li>
+      <li><b>Ley 29973:</b> en Perú (Censo 2017) la discapacidad más frecuente es la dificultad para ver (48,3 %), seguida de moverse o caminar (15,1 %).</li>
+    </ul>
+    <div class="scroll"><table><thead><tr><th>Ejemplo de riesgo</th><th>Imp.</th><th>Prob.</th><th>Severidad</th><th>Respuesta</th></tr></thead><tbody>
+      <tr><td>Resistencia al cambio</td><td class="n">0,8</td><td class="n">0,9</td><td class="n">0,72</td><td>Evitar: gestión del cambio</td></tr>
+      <tr><td>Ausencia de liderazgo ejecutivo</td><td class="n">0,8</td><td class="n">0,5</td><td class="n">0,40</td><td>Mitigar: escalar a gerente general</td></tr>
+      <tr><td>Rotación del analista principal</td><td class="n">0,4</td><td class="n">0,9</td><td class="n">0,36</td><td>Mitigar: contraoferta o reemplazo</td></tr>
+      <tr><td>Nuevas tecnologías</td><td class="n">0,2</td><td class="n">0,3</td><td class="n">0,06</td><td>Aceptar: capacitación, asesoría</td></tr>
+    </tbody></table></div>
+    <div class="concl"><b>Conclusiones</b>Las adquisiciones son responsabilidad del equipo, no del cliente; la gobernanza pesa más cuanto mayor es el proyecto; las lecciones aprendidas son experiencias buenas o malas que se deben repetir o evitar.</div>
+  </div></article>
+
+  <article class="week" id="s8"><div class="num">08<span>Realización del trabajo: ágil y DevOps</span></div><div>
+    <p class="logro">Controlar la gestión del proyecto e identificar el valor de negocio.</p>
+    <ul>
+      <li><b>Valor incremental:</b> ciclos cortos (1–4 semanas) que entregan funcionalidad real. <b>MVP</b>: primera versión con lo esencial para validar con usuarios. Se prioriza lo de mayor valor (impacto, urgencia, esfuerzo). Ej.: app de pagos: sprint 1 registro y login, sprint 2 pagos y notificaciones, sprint 3 reportes e integraciones.</li>
+      <li><b>Entregables:</b> producto, resultado o capacidad verificable (PMBOK). <b>Objeto del proyecto</b>: artefacto que documenta decisiones (backlog, UML, actas). Internos (código, pruebas) y externos (producto, manuales, actas). Los criterios de aceptación se definen <i>antes</i> de empezar.</li>
+      <li><b>Scrum:</b> roles Product Owner, Scrum Master y equipo de desarrollo (3–9); artefactos Product Backlog, Sprint Backlog e Incremento; pilares transparencia, inspección y adaptación.</li>
+      <li><b>Kanban:</b> gestión visual nacida en Toyota, sin sprints ni roles fijos; límites WIP, principio <i>pull</i>; métricas lead time, cycle time y throughput; mejora continua (Kaizen). Ej.: bajar el WIP de “En revisión” de 4 a 2 redujo el lead time de 18 a 6 días.</li>
+      <li><b>DevOps:</b> elimina el muro entre desarrollo y operaciones. Pilares: CI, CD, infraestructura como código y monitoreo continuo. Pipeline: commit y build → test → stage → deploy (GitHub Actions, Jenkins, SonarQube, Docker, Kubernetes, Terraform, Prometheus, Grafana).</li>
+    </ul>
+    <div class="scroll"><table class="stack"><thead><tr><th>Evento Scrum</th><th>Duración</th><th>Propósito</th></tr></thead><tbody>
+      <tr><td>Sprint Planning</td><td>4–8 h</td><td>Elegir ítems y definir el Sprint Goal (¿qué y cómo?).</td></tr>
+      <tr><td>Daily Scrum</td><td>15 min diarios</td><td>Coordinar: ¿qué hice?, ¿qué haré?, ¿impedimentos?</td></tr>
+      <tr><td>Sprint Review</td><td>2–4 h</td><td>Demostrar el incremento y actualizar el backlog con feedback.</td></tr>
+      <tr><td>Retrospectiva</td><td>1,5–3 h</td><td>Qué salió bien, qué mejorar y qué acciones tomar.</td></tr>
+      <tr><td>Refinamiento</td><td>~10 % del sprint</td><td>Detallar, estimar y priorizar el backlog.</td></tr>
+    </tbody></table></div>
+    <div class="concl"><b>Conclusiones</b>El valor que entrega el proyecto es indispensable para la gestión y el crecimiento del negocio; los riesgos deben identificarse y evaluarse adecuadamente.</div>
+  </div></article>
+
+  <article class="week" id="s9"><div class="num">09<span>Comunicaciones e interesados</span></div><div>
+    <p class="logro">Gestionar las comunicaciones e involucrar a los stakeholders para mantenerlos informados.</p>
+    <ul>
+      <li><b>Gestión de comunicaciones:</b> la información correcta, al interesado correcto, en el momento y canal adecuados. El <b>plan de comunicaciones</b> define quién necesita qué, con qué frecuencia y por qué medio.</li>
+      <li><b>Niveles de involucramiento:</b> desconocedor → resistente → neutral → partidario → líder. Objetivo: llevar a los clave a partidario o líder. El <b>registro de interesados</b> guarda rol, influencia, interés y estrategia.</li>
+      <li><b>Tipos de comunicación:</b> <b>push</b> (el emisor envía: correos, reportes), <b>pull</b> (el receptor consulta: portales, wikis, dashboards) e <b>interactiva</b> (reuniones, talleres; esencial para decisiones críticas).</li>
+      <li><b>Barreras:</b> diferencias culturales e idioma, jerga técnica, sobrecarga de información, falta de canales formales y de retroalimentación. Hay que adaptar el mensaje a la audiencia.</li>
+      <li><b>Entendimiento compartido:</b> lenguaje ubicuo (DDD), acuerdos de trabajo, User Story Mapping, Event Storming, prototipos, documentación visual, Definition of Ready y Definition of Done.</li>
+      <li><b>Visualizar el avance:</b> tableros Kanban/Scrum, reportes periódicos, dashboards ejecutivos con KPIs, burndown y semáforo RAG (verde, amarillo, rojo). Nunca el mismo dashboard para todas las audiencias.</li>
+      <li><b>IA generativa:</b> minutas, resúmenes y reportes con hasta 40 % de ahorro de tiempo, pero con riesgos de alucinaciones, sesgos, confidencialidad y dependencia. La IA es asistente, no decisora: todo se revisa y aprueba por un humano.</li>
+    </ul>
+    <div class="concl"><b>Conclusiones</b>Omitir o identificar mal a un interesado puede causar retrasos o incluso la cancelación del proyecto.</div>
+  </div></article>
+
+  <article class="week" id="s10"><div class="num">10<span>Riesgos y valor del negocio</span><em>Evaluación T2</em></div><div>
+    <p class="logro">Integrar la planificación y ejecución (T2): evaluar y gestionar riesgos y ejecutar para dar valor de negocio.</p>
+    <ul>
+      <li><b>Planificar la gestión de riesgos:</b> salida = plan con metodología, roles y responsabilidades, presupuesto, calendario, categorías y escalas de probabilidad e impacto.</li>
+      <li><b>Identificar riesgos:</b> se usan los planes de gestión (requisitos, costos, cronograma, calidad, RR. HH.), la línea base del alcance, las estimaciones, el registro de interesados, documentos de adquisiciones, FAE y APO.</li>
+      <li><b>Matriz completa:</b> riesgo y relación con la EDT → impacto, probabilidad y score → trigger → propietario, respuesta y responsable → fechas y costo.</li>
+      <li><b>Valor del negocio:</b> beneficio cuantificable neto, tangible o intangible. Exige alinear el trabajo con los objetivos estratégicos y ajustarlo cuando el mercado cambia.</li>
+      <li><b>Sistema de entrega de valor:</b> portafolios, programas, proyectos, productos y operaciones trabajando juntos, alineados con la estrategia.</li>
+    </ul>
+    <p class="note"><b>Ojo:</b> las escalas de impacto cambian entre semanas. En la semana 7 son 0,80 / 0,40 / 0,20 / 0,10 / 0,05 y en la semana 10 son 1,00 / 0,60 / 0,45 / 0,30 / 0,15. La de probabilidad (0,9 a 0,1) es igual en ambas. Confirma con el docente cuál usar en tus trabajos.</p>
+  </div></article>
+
+  <article class="week" id="s11"><div class="num">11<span>Cambios, métricas y conocimiento</span></div><div>
+    <p class="logro">Gestionar el proyecto mediante gestión de cambios, gobernanza, seguimiento y transferencia del conocimiento.</p>
+    <ul>
+      <li><b>Cuatro gates del cambio:</b> solicitud documentada (iniciador) → revisión técnica (equipo técnico) → análisis costo-beneficio (PM/PO) → decisión y compromiso (CAB).</li>
+      <li><b>Tipos de cambio:</b> rutinario (líder técnico), estándar (pre-aprobado; SM/PO), normal (CAB ligero), emergencia (líder de incidente, post-mortem obligatorio) y amplio (alta dirección).</li>
+      <li><b>Incidentes:</b> detectar → clasificar → contener → resolver → aprender. Severidad: SEV1 crítico (respuesta &lt; 15 min, resolución &lt; 4 h), SEV2 alto (&lt; 30 min / &lt; 8 h), SEV3 medio (&lt; 4 h / &lt; 3 días), SEV4 bajo (&lt; 1 día / próxima release).</li>
+      <li><b>Flujo del cambio en el backlog (7 estados):</b> solicitud, triaje, refinamiento, aprobación, implementación, validación y cierre; con trazabilidad, WIP acotado y Definition of Done.</li>
+      <li><b>Priorización:</b> <b>MoSCoW</b> decide qué entra (Must, Should, Could, Won't); <b>WSJF</b> decide el orden <span class="formula">(valor + urgencia + riesgo) / tamaño</span>; <b>RICE</b> compara alternativas <span class="formula">(alcance × impacto × confianza) / esfuerzo</span>.</li>
+      <li><b>Costo-beneficio:</b> <span class="formula">Bn = V − Cc − Co − Cr</span>. Matriz impacto/esfuerzo: logros rápidos, mayores apuestas, llenar capacidad, evitar. ROI = (valor − costo) / costo.</li>
+      <li><b>Control adaptativo:</b> inspeccionar → adaptar → mejorar → comprometerse.</li>
+      <li><b>Métricas:</b> burn-down (lo que falta) vs. burn-up (lo entregado y el alcance total); velocidad solo como pronóstico, nunca como KPI individual; <b>lead time = T3 − T0</b> y <b>cycle time = T3 − T2</b>; throughput, tasa de defectos, cobertura y rework se leen juntos.</li>
+      <li><b>Transferencia del conocimiento:</b> documentación viva (ADRs, runbooks), pair y mob programming, demos y brown bags, comunidades y mentoría. Factor autobús sano ≥ 3 por área crítica.</li>
+    </ul>
+    <div class="concl"><b>Conclusiones</b>Las métricas y la gestión del cambio dan mejor control sobre la ejecución del proyecto.</div>
+  </div></article>
+
+  <article class="week" id="s12"><div class="num">12<span>Liderazgo, Lean y DevOps</span></div><div>
+    <p class="logro">Gestionar el proyecto con Lean y DevOps, liderando y apoyando al equipo.</p>
+    <ul>
+      <li><b>Liderar:</b> definir la dirección (visión y criterios de decisión), alinear al equipo (objetivos SMART, DoD/DoR, dependencias) y proteger y habilitar (quitar interrupciones, invertir en aprendizaje).</li>
+      <li><b>Estilos de liderazgo:</b> <b>servant</b> (Greenleaf: servir primero), <b>situacional</b> (Hersey y Blanchard: según madurez) y <b>facilitador</b> (Hackman: coaching). Equipo nuevo y tarea definida → dirigir; equipo experto y tarea ambigua → facilitar; crisis → decidir.</li>
+      <li><b>Apoyar el desempeño:</b> reuniones 1:1, feedback continuo (situación, comportamiento, impacto), metas claras (SMART individuales, OKR de equipo) y coaching.</li>
+      <li><b>Bloqueadores:</b> organizacionales, técnicos, de personas o externos. Ciclo: identificar → categorizar → escalar → resolver y aprender.</li>
+      <li><b>Ocho desperdicios Lean:</b> defectos, sobreproducción, espera, transporte, inventario, movimiento, sobreproceso y talento infrautilizado (el más caro).</li>
+      <li><b>Tres vías de DevOps:</b> flujo, retroalimentación y aprendizaje continuo.</li>
+      <li><b>Diversidad y autonomía:</b> diversidad cognitiva, de identidad, funcional y de experiencia; seguridad psicológica; responsabilidad compartida; motivación por <b>autonomía, maestría y propósito</b>.</li>
+    </ul>
+    <div class="concl"><b>Conclusiones</b>Omitir o identificar mal un problema puede ocasionar retrasos o la cancelación del proyecto.</div>
+  </div></article>
+
+  <article class="week" id="s13"><div class="num">13<span>Mantener el equipo encaminado y el negocio en mente</span></div><div>
+    <p class="logro">Identificar beneficios y valor del proyecto para orientar al equipo durante la ejecución.</p>
+    <ul>
+      <li><b>Orientar a los interesados:</b> identificar interesados potenciales → analizar su impacto potencial → evaluar el tipo de respuesta y preparar planes para reacciones negativas.</li>
+      <li><b>Inteligencia emocional en el equipo:</b> mejora la comunicación y el compromiso, enseña a escuchar, desarrolla empatía grupal, gestiona conflictos sin avivarlos y permite liderar con coherencia.</li>
+      <li><b>Gestión de requisitos (CMMI-DEV):</b> gestionar los requisitos y asegurar su alineación con planes y productos de trabajo.</li>
+      <li><b>Análisis de requisitos:</b> resolver conflictos, descubrir límites del software y derivar requisitos de software desde los del sistema.</li>
+      <li><b>Validación de requisitos:</b> revisiones (con un representante del cliente), prototipado, validación del modelo y pruebas de aceptación. Un requisito que no se puede validar es solo un “deseo”.</li>
+      <li><b>Requisitos de conformidad:</b> definición clara, gestión de datos, verificación, retroalimentación, aprobación final y documentación.</li>
+      <li><b>Valor:</b> cada interesado lo percibe distinto (funciones para el cliente, métricas financieras para la organización, valor social). La entrega de valor del PMI se apoya en una gobernanza eficiente (PMO) y en funciones humanas: supervisar, presentar objetivos, facilitar, ejecutar, aplicar conocimiento, orientar, dotar de recursos y mantener la gobernanza.</li>
+    </ul>
+    <div class="concl"><b>Conclusiones</b>Orientar a los stakeholders es clave para el éxito; gestionar los requisitos de conformidad permite que el usuario apruebe los entregables finales y perciba el valor.</div>
+  </div></article>
+
+  <article class="week" id="s14"><div class="num">14<span>Gestión de conflictos e inteligencia emocional</span></div><div>
+    <p class="logro">Gestionar conflictos y aplicar inteligencia emocional para mantener el desempeño óptimo.</p>
+    <div class="scroll"><table class="stack"><thead><tr><th>Estilo (Thomas-Kilmann)</th><th>Cuándo usarlo</th><th>Riesgo si se abusa</th></tr></thead><tbody>
+      <tr><td>Evitar</td><td>Tema trivial o se necesita tiempo</td><td>Problema sin resolver</td></tr>
+      <tr><td>Acomodar</td><td>La relación pesa más que el resultado</td><td>Cesiones excesivas</td></tr>
+      <tr><td>Competir</td><td>Emergencia crítica</td><td>Relaciones dañadas</td></tr>
+      <tr><td>Compromiso</td><td>Metas de igual peso</td><td>Resultado tibio</td></tr>
+      <tr><td>Colaborar</td><td>Conflictos complejos (ganar-ganar)</td><td>Requiere tiempo</td></tr>
+    </tbody></table></div>
+    <ul>
+      <li><b>Casos:</b> React vs. Angular se resolvió <b>colaborando</b> con una matriz ponderada; un plazo recortado de 12 a 6 semanas, con <b>compromiso</b> (alcance crítico al 60 % y el resto después).</li>
+      <li><b>Matriz poder–interés:</b> alto/alto → gestionar de cerca; alto poder, bajo interés → mantener satisfecho; bajo poder, alto interés → mantener informado; bajo/bajo → monitorear. Los roles genéricos necesitan nombre y apellido.</li>
+      <li><b>IE de Goleman (1998):</b> autoconciencia, autorregulación, motivación, empatía y habilidades sociales; es entrenable.</li>
+      <li><b>Retrospectiva:</b> qué salió bien, qué mejorar y qué experimentar (1 a 3 acciones con dueño y fecha). Formatos: Mad·Sad·Glad, Start·Stop·Continue, 4Ls.</li>
+      <li><b>Retrospectiva vs. lecciones aprendidas:</b> la primera es continua (cada sprint, equipo Scrum); la segunda es puntual (fin de fase o proyecto, toda la organización).</li>
+      <li><b>Pilares de Scrum:</b> transparencia, inspección y adaptación, materializados en Sprint Planning (máx. 8 h), Daily (15 min), Review (máx. 4 h) y Retrospective (máx. 3 h), dentro de un sprint de hasta un mes.</li>
+    </ul>
+  </div></article>
+
+  <article class="week" id="s15"><div class="num">15<span>Mantener el negocio en mente</span></div><div>
+    <p class="logro">Desarrollar la mejora continua del proceso de gestión de proyectos.</p>
+    <ul>
+      <li><b>Organización:</b> estructura que logra metas mediante capital y talento humano. Antes: autoridad-obediencia, decisiones centralizadas, conflictos por represión. Ahora: confianza, responsabilidad compartida y negociación.</li>
+      <li><b>Cambio organizacional:</b> adaptación planeada (no al azar) que genera un nuevo comportamiento organizacional. Lo impulsan <b>fuerzas internas</b> (tecnología, directiva, estrategia) y <b>externas</b> (decretos, normas de calidad).</li>
+      <li><b>Planear el cambio:</b> mejora el desempeño, enfrenta problemas y unifica esfuerzos; produce trabajo en equipo, compromiso, calidad, innovación y liderazgo. El cambio cultural parte del cambio personal.</li>
+      <li><b>Resistencia al cambio:</b> <b>pasiva</b> (acepta todo pero no se compromete), <b>activa</b> (se opone abiertamente) y <b>por inercia</b> (a veces a favor, a veces en contra).</li>
+      <li><b>Ciclo PDCA (Deming):</b> <b>Planificar</b> (objetivos y cómo medirlos) → <b>Hacer</b> (implementar) → <b>Verificar</b> (comparar con metas usando Pareto, checklists, correlación) → <b>Actuar</b> (estandarizar y documentar lo aprendido).</li>
+    </ul>
+    <div class="concl"><b>Conclusiones</b>El cambio organizacional debe evaluarlo el cliente y la alta dirección; la mejora continua no es un evento aislado y requiere a todos los stakeholders.</div>
+  </div></article>
+</div></section>
+
+<section class="band" id="glosario" style="background:var(--card)"><div class="wrap">
+  <div class="sec-head"><div><h2>Glosario</h2><p>Términos clave del curso, con la semana donde aparecen.</p></div>
+    <div class="tools"><label for="gq" class="count">Buscar</label><input id="gq" type="search" placeholder="Ej.: RACI, WIP, SOW…"><span class="count" id="gc"></span></div></div>
+  <div class="gl" id="gl"></div>
+</div></section>
+
+<section class="band" id="preguntas"><div class="wrap">
+  <div class="sec-head"><div><h2>Preguntas y respuestas</h2><p>Toca una pregunta para ver la respuesta. Úsalas como práctica antes de mirar.</p></div>
+    <div class="tools"><label for="qw" class="count">Semana</label><select id="qw"><option value="0">Todas</option></select><button id="qx" type="button">Mostrar todas</button></div></div>
+  <div id="ql"></div>
+</div></section>
+</main>
+
+<footer class="band"><div class="wrap">Basado en las diapositivas del curso Administración de Proyectos de Software (UPN, 2026). Referencias del curso: Guía PMBOK 6.ª y 7.ª ed., Guía de Scrum 2020, Guía de Fundamentos de Disciplina Agile del PMI y Ley N.º 29973.</div></footer>
+
+<script>
+{
+const G=[
+["Proyecto","Esfuerzo temporal para crear un producto, servicio o resultado único.",1],
+["Triple restricción","Alcance, tiempo y costo; la extendida añade calidad, recursos humanos y riesgos.",1],
+["Programa","Grupo de proyectos relacionados que se gestionan de forma coordinada.",1],
+["Portafolio","Conjunto de programas y proyectos agrupados según la estrategia de la organización.",1],
+["PMO","Oficina de proyectos: centraliza metodología, capacitación, QA, portafolio y recursos.",1],
+["FAE","Factores ambientales de la empresa: condiciones fuera del control del equipo que influyen en el proyecto.",1],
+["APO","Activos de los procesos de la organización: planes, políticas, procedimientos y bases de conocimiento propios.",1],
+["Cascada","Ciclo de vida secuencial: cada fase empieza cuando termina la anterior.",1],
+["Incremental","Ciclo de vida por iteraciones que producen versiones funcionales sucesivas.",1],
+["CMMI","Modelo de madurez de procesos con 5 niveles: inicial, repetible, definido, manejado y optimizado.",2],
+["SWEBOK","Cuerpo de conocimiento de la ingeniería de software (15 áreas).",2],
+["PMBOK","Guía del PMI con las áreas de conocimiento de la dirección de proyectos.",2],
+["Enfoque predictivo","Plan definido por adelantado y ejecutado contra una línea base.",2],
+["Enfoque ágil","Iteraciones cortas con incrementos funcionales y alcance repriorizable.",2],
+["Enfoque híbrido","Combinación deliberada de cascada (lo predecible) y ágil (lo incierto).",2],
+["Diversidad cultural","Inclusión de diferentes culturas y perspectivas en una organización.",3],
+["Groupthink","Pensamiento de grupo: consenso sin crítica que empobrece las decisiones.",3],
+["Ley 29973","Ley general de la persona con discapacidad del Perú.",3],
+["Alcance del producto","Características y funciones del producto, servicio o resultado.",4],
+["Alcance del proyecto","Trabajo necesario para entregar el producto con las características especificadas.",4],
+["EDT / WBS","Estructura de desglose del trabajo: descompone el proyecto hasta paquetes de trabajo.",4],
+["Paquete de trabajo","Nivel más bajo de la EDT; base para estimar y controlar.",4],
+["Matriz RACI","Tipo de RAM: Responsable, Accountable (rinde cuentas), Consultado, Informado.",4],
+["Histograma de recursos","Gráfico que muestra la cantidad de recursos requeridos en el tiempo.",4],
+["Línea base del cronograma","Versión aprobada del cronograma; solo cambia por control formal de cambios.",5],
+["Estimación análoga","Usa costos o duraciones de proyectos anteriores similares.",5],
+["Estimación paramétrica","Usa una relación estadística entre variables (ej. Y = 5X + 4).",5],
+["Estimación ascendente","Suma estimaciones detalladas de abajo hacia arriba.",5],
+["Estimación de tres valores","PERT: (Optimista + 4 × Más probable + Pesimista) / 6.",5],
+["Técnica Delphi","Consenso anónimo de expertos en varias rondas.",5],
+["Reserva de contingencia","Monto para riesgos identificados (8 % en el ejemplo del curso).",5],
+["Reserva de gestión","Monto para imprevistos no identificados (2 % en el ejemplo).",5],
+["Línea base de costos","Presupuesto aprobado sin reserva de gestión, usado para medir el desempeño.",5],
+["Roadmap","Plan de alto nivel de entregas del producto en el tiempo.",5],
+["Diseño de experimentos","Método estadístico para identificar qué factores influyen más en un resultado.",6],
+["QA","Aseguramiento de la calidad: asegura que los procesos se cumplan.",6],
+["QC","Control de la calidad: verifica que los entregables cumplan los requisitos.",6],
+["Métrica de calidad","Definición operativa de un atributo a medir (ej. tiempo de respuesta = 2 s).",6],
+["Lista de control","Herramienta para verificar que se realizaron los pasos necesarios.",6],
+["Hacer o comprar","Análisis para decidir si producir internamente o adquirir un bien o servicio.",7],
+["FFP","Contrato de precio fijo cerrado.",7],
+["FPIF","Contrato de precio fijo más honorarios con incentivos.",7],
+["FP-EPA","Contrato de precio fijo con ajuste económico de precio.",7],
+["SOW","Enunciado del trabajo: describe lo que se va a adquirir.",7],
+["Gobernanza","Marco de funciones y procesos que guía la dirección del proyecto.",7],
+["Severidad del riesgo","Probabilidad × impacto.",7],
+["Trigger","Evento disparador que avisa que un riesgo está por materializarse.",7],
+["Propietario del riesgo","Persona responsable de vigilar el riesgo y ejecutar la respuesta.",7],
+["MVP","Producto mínimo viable: primera versión con lo esencial para validar con usuarios.",8],
+["Entregable","Producto, resultado o capacidad tangible y verificable.",8],
+["Product Owner","Representa al cliente; prioriza el Product Backlog por valor.",8],
+["Scrum Master","Facilita el proceso y elimina impedimentos.",8],
+["Product Backlog","Lista priorizada de todo el trabajo pendiente del producto.",8],
+["Sprint Backlog","Ítems comprometidos para el sprint actual.",8],
+["Incremento","Producto funcional y potencialmente desplegable al final del sprint.",8],
+["Sprint","Iteración de duración fija de 1 a 4 semanas.",8],
+["Kanban","Sistema visual de gestión del flujo de trabajo, sin sprints ni roles fijos.",8],
+["WIP","Trabajo en curso; su límite evita multitarea y cuellos de botella.",8],
+["Principio pull","El equipo toma trabajo nuevo solo cuando tiene capacidad.",8],
+["Kaizen","Mejora continua mediante pequeños cambios frecuentes.",8],
+["DevOps","Cultura y prácticas que integran desarrollo y operaciones.",8],
+["CI / CD","Integración continua y entrega continua automatizadas.",8],
+["IaC","Infraestructura como código: servidores definidos en archivos versionados.",8],
+["Stakeholder","Interesado: persona o grupo que afecta o es afectado por el proyecto.",9],
+["Registro de interesados","Documento con rol, influencia, interés y estrategia de cada interesado.",9],
+["Comunicación push","El emisor envía la información sin que se la pidan.",9],
+["Comunicación pull","El receptor consulta la información cuando la necesita.",9],
+["Lenguaje ubicuo","Vocabulario común entre técnicos y negocio (DDD).",9],
+["User Story Mapping","Mapa visual de historias de usuario para acordar el MVP.",9],
+["Event Storming","Taller que modela el dominio con eventos en post-its.",9],
+["Definition of Ready","Criterios que debe cumplir una historia para entrar al sprint.",9],
+["Definition of Done","Criterios que definen cuándo un trabajo está realmente terminado.",9],
+["Burndown chart","Gráfico del trabajo restante frente a la línea ideal.",9],
+["Semáforo RAG","Estado Rojo, Amarillo o Verde del proyecto.",9],
+["Valor del negocio","Beneficio cuantificable neto, tangible o intangible, de una iniciativa.",10],
+["Sistema de entrega de valor","Portafolios, programas, proyectos y operaciones alineados para crear valor.",10],
+["CAB","Comité de cambios que aprueba, rechaza o difiere solicitudes.",11],
+["Post-mortem","Análisis sin culpables posterior a un incidente.",11],
+["MoSCoW","Priorización en Must, Should, Could y Won't.",11],
+["WSJF","Primero el trabajo más corto y valioso: (valor + urgencia + riesgo) / tamaño.",11],
+["RICE","(Reach × Impact × Confidence) / Effort.",11],
+["Burn-up","Gráfico de trabajo completado frente al alcance total.",11],
+["Velocidad","Puntos completados por iteración; útil como pronóstico, no como meta.",11],
+["Lead time","Tiempo desde la solicitud hasta la entrega (T3 − T0).",11],
+["Cycle time","Tiempo desde que el equipo inicia hasta que entrega (T3 − T2).",11],
+["Throughput","Elementos entregados por unidad de tiempo.",11],
+["Rework","Ítems devueltos a desarrollo tras revisión.",11],
+["ADR","Registro de decisiones de arquitectura.",11],
+["Runbook","Guía para operar un servicio.",11],
+["Factor autobús","Personas que pueden faltar antes de perder capacidad esencial; sano ≥ 3.",11],
+["Liderazgo servant","Servir al equipo primero, quitar obstáculos y habilitar su crecimiento.",12],
+["Liderazgo situacional","Adaptar el estilo a la madurez del equipo.",12],
+["OKR","Objetivos y resultados clave, usados para metas de equipo.",12],
+["SMART","Metas específicas, medibles, alcanzables, relevantes y con plazo.",12],
+["Muda","Desperdicio en Lean (ocho tipos).",12],
+["Seguridad psicológica","Clima en que las personas se atreven a preguntar, discrepar y admitir errores.",12],
+["Inteligencia emocional","Capacidad de reconocer y gestionar emociones propias y ajenas.",13],
+["Requisito de conformidad","Criterio que define si un requisito se cumplió y con qué calidad.",13],
+["Prueba de aceptación","Verifica que el producto satisface el requisito desde el uso real.",13],
+["Modelo Thomas-Kilmann","Cinco estilos de conflicto según asertividad y cooperación.",14],
+["Matriz poder–interés","Clasifica interesados para definir la estrategia de comunicación.",14],
+["Retrospectiva","Evento del fin de sprint para mejorar el proceso del equipo.",14],
+["Lecciones aprendidas","Conocimiento documentado al cierre de fase o proyecto para la organización.",14],
+["Cambio organizacional","Adaptación planeada que crea un nuevo comportamiento organizacional.",15],
+["Resistencia al cambio","Puede ser pasiva, activa o por inercia.",15],
+["Ciclo PDCA","Planificar, Hacer, Verificar, Actuar (círculo de Deming).",15],
+["Diagrama de Pareto","Herramienta para priorizar las pocas causas que generan la mayoría de efectos.",15]
+].sort((a,b)=>a[0].localeCompare(b[0],'es'));
+
+const Q={
+1:[["¿Qué es un proyecto?","Un esfuerzo temporal que se lleva a cabo para crear un producto, servicio o resultado único."],
+["¿Cuáles son los elementos de la triple restricción y de la extendida?","Triple: alcance, tiempo y costo. Extendida: calidad, recursos humanos y riesgos."],
+["¿Cuál es la diferencia entre programa y portafolio?","El programa agrupa proyectos relacionados; el portafolio agrupa programas y proyectos según la estrategia de la organización."],
+["¿Qué diferencia hay entre FAE y APO?","Los FAE son condiciones externas al control del equipo; los APO son planes, procesos y bases de conocimiento propios de la organización."],
+["¿Por qué no bastan las habilidades técnicas del director?","Porque, según el PMI, el mercado global exige además liderazgo e inteligencia de negocios."]],
+2:[["¿Cuáles son los 5 niveles de CMMI?","Inicial, repetible, definido, manejado y optimizado."],
+["¿Qué significa estar en el nivel 1 de CMMI?","No que la organización no pueda hacer buen software, sino que hacerlo le cuesta demasiado en lo financiero y lo humano."],
+["¿En qué se diferencian PMBOK y SWEBOK?","PMBOK cubre la dirección de proyectos en general; SWEBOK cubre el conocimiento específico de la ingeniería de software."],
+["¿Cuándo conviene el enfoque predictivo y cuándo el ágil?","Predictivo con requisitos estables y contratos cerrados; ágil cuando los requisitos cambian y se necesita aprender pronto del usuario."],
+["¿Qué hace falta para que un enfoque híbrido funcione?","Que la mezcla se negocie a propósito y haya un responsable que asuma el costo de la interfaz entre cascada y ágil."]],
+3:[["¿Cuáles son los cuatro valores del código de ética del PMI?","Responsabilidad, respeto, equidad y honestidad."],
+["¿Qué es la diversidad cultural en una organización?","La existencia e inclusión de diferentes culturas y perspectivas dentro de ella."],
+["Menciona las cuatro dimensiones de diversidad de un equipo.","Cognitiva, idiomática y cultural, generacional y de género, y geográfica y horaria."],
+["¿Qué caracteriza a un equipo de élite?","Se autoadministra, se automotiva, se apoya mutuamente, acepta críticas y propone mejoras."],
+["¿Qué ley peruana se estudia y por qué?","La Ley 29973, para comprender que todas las personas pueden integrar un equipo de proyecto de alto rendimiento."]],
+4:[["¿Qué busca la gestión del alcance?","Definir qué trabajo se hará y asegurar que se realice ese trabajo y solo ese."],
+["¿Cuáles son las salidas de planificar la gestión del alcance?","El plan de gestión del alcance y el plan de gestión de requisitos."],
+["¿Qué es la EDT y de qué formas se organiza?","Es la descomposición del trabajo hasta paquetes de trabajo; puede organizarse por paquetes, por fases o por entregables principales."],
+["¿Qué significa cada letra de RACI?","Responsable (ejecuta), Accountable (rinde cuentas), Consultado e Informado."],
+["¿Qué incluye el plan de recursos humanos?","Adquisición de personal, calendario de recursos, plan de liberación, necesidades de formación, y reconocimientos y recompensas."]],
+5:[["¿Qué es la línea base del cronograma?","La versión aprobada del modelo de programación, que solo cambia por control formal de cambios y sirve para comparar con lo real."],
+["¿Cuál es la fórmula de la estimación de tres valores?","(Optimista + 4 × Más probable + Pesimista) / 6."],
+["Diferencia entre estimación análoga y ascendente.","La análoga usa datos de proyectos anteriores; la ascendente suma estimaciones detalladas de cada actividad."],
+["¿Cómo se pasa de la línea base de costos al costo total?","Sumando la reserva de contingencia y la reserva de gestión (8 % y 2 % en el ejemplo)."],
+["¿Cuáles son las capas de la cebolla de planificación ágil?","Visión, roadmap, release, iteración y diario."]],
+6:[["¿Cuál es el principal beneficio de cumplir los requisitos de calidad?","Menos reproceso: más productividad, menores costos y más satisfacción de los interesados."],
+["¿Para qué sirve el diseño de experimentos?","Para identificar qué factores influyen más en un resultado, cambiándolos sistemáticamente en lugar de uno a uno."],
+["¿Qué debe tratar el plan de gestión de calidad?","El control de calidad (QC), el aseguramiento de calidad (QA) y la mejora continua del proceso."],
+["¿Qué diferencia hay entre métrica y medición?","La métrica es la definición operativa del atributo; la medición es el valor real obtenido."],
+["¿Qué áreas quedan por planificar tras la semana 6?","Comunicaciones, riesgos y adquisiciones."]],
+7:[["Alquilar cuesta $800/día; comprar, $12 000 más $400/día. ¿Desde cuántos días conviene comprar?","Igualando 800d = 12 000 + 400d se obtiene d = 30; si se usa más de 30 días conviene comprar."],
+["¿Qué es un SOW y qué secciones tiene?","El enunciado del trabajo de la adquisición: enunciado, ubicación, período, cronograma de entregables, estándares, criterios de aceptación y requerimientos especiales."],
+["¿Cómo se calcula la severidad de un riesgo?","Multiplicando probabilidad por impacto."],
+["¿Cuáles son las respuestas estratégicas usadas en la matriz?","Evitar, mitigar y aceptar."],
+["¿Qué límite tiene el uso de IA generativa en riesgos?","Propone opciones, pero la validación, el contexto local y la decisión son humanos; no se suben datos sensibles."]],
+8:[["¿Qué es un MVP?","La primera versión funcional con lo esencial para validar el producto con usuarios reales."],
+["¿Cuáles son los roles y artefactos de Scrum?","Roles: Product Owner, Scrum Master y equipo de desarrollo. Artefactos: Product Backlog, Sprint Backlog e Incremento."],
+["¿Qué tres preguntas responde el Daily Scrum?","¿Qué hice ayer?, ¿qué haré hoy? y ¿hay impedimentos?"],
+["¿Qué pasa si una columna Kanban supera su límite WIP?","El equipo detiene el trabajo nuevo y resuelve primero el cuello de botella."],
+["¿Cuáles son las etapas de un pipeline CI/CD?","Commit y build, test, stage y deploy."]],
+9:[["¿Qué define un plan de comunicaciones?","Quién necesita qué información, con qué frecuencia y por qué medio."],
+["¿Cuáles son los niveles de involucramiento de los interesados?","Desconocedor, resistente, neutral, partidario y líder."],
+["Diferencia entre comunicación push y pull.","En push el emisor envía la información; en pull el receptor la consulta cuando la necesita."],
+["¿Qué es el lenguaje ubicuo?","Un vocabulario común en el que cada término significa lo mismo para desarrolladores, analistas y clientes."],
+["¿Cuál es el principio fundamental del uso de IA en proyectos?","La IA es un asistente, no un tomador de decisiones: todo lo que genera debe revisarlo y aprobarlo un humano."]],
+10:[["¿Qué contiene el plan de gestión de riesgos?","Metodología, roles y responsabilidades, presupuesto, calendario, categorías y escalas de probabilidad e impacto."],
+["¿Qué columnas tiene la matriz completa de riesgos?","Riesgo, relación con la EDT, impacto, probabilidad, score, trigger, propietario, respuesta, responsable, fechas y costo."],
+["¿Qué es el valor del negocio?","El beneficio cuantificable neto, tangible o intangible, que se deriva de una iniciativa."],
+["¿Qué componentes forman el sistema de entrega de valor?","Portafolios, programas, proyectos, productos y operaciones alineados con la estrategia."]],
+11:[["¿Cuáles son los cuatro gates del cambio?","Solicitud documentada, revisión técnica, análisis costo-beneficio y decisión y compromiso."],
+["¿Cuáles son las etapas del ciclo de vida de un incidente?","Detectar, clasificar, contener, resolver y aprender."],
+["¿Para qué sirve cada marco: MoSCoW, WSJF y RICE?","MoSCoW decide qué entra, WSJF decide el orden y RICE compara alternativas."],
+["¿Cuál es la diferencia entre lead time y cycle time?","Lead time va de la solicitud a la entrega (T3 − T0); cycle time, del inicio del trabajo a la entrega (T3 − T2)."],
+["¿Por qué la velocidad no debe usarse como KPI individual?","Porque induce a inflar artificialmente los puntos; debe usarse como pronóstico, no como meta."],
+["¿Qué es el factor autobús?","Cuántas personas pueden faltar antes de que el proyecto pierda capacidad esencial; lo sano es 3 o más."]],
+12:[["¿Qué tres tareas tiene un líder de proyecto?","Definir la dirección, alinear al equipo y proteger y habilitar al equipo."],
+["¿Qué estilo de liderazgo usar con un equipo nuevo y una tarea definida?","Dirigir (liderazgo situacional)."],
+["Nombra los ocho desperdicios Lean.","Defectos, sobreproducción, espera, transporte, inventario, movimiento, sobreproceso y talento infrautilizado."],
+["¿Cuáles son las tres vías de DevOps?","Flujo, retroalimentación y aprendizaje continuo."],
+["¿Qué tres factores motivan el desempeño con autonomía?","Autonomía, maestría y propósito."]],
+13:[["¿Cuáles son los pasos para orientar a los interesados?","Identificar interesados potenciales, analizar su impacto potencial y evaluar el tipo de respuesta."],
+["¿Qué técnicas sirven para validar requisitos?","Revisiones, prototipado, validación del modelo y pruebas de aceptación."],
+["¿Por qué un requisito no validable es solo un “deseo”?","Porque no se puede comprobar que el producto final lo satisface."],
+["¿Cuáles son las estrategias de los requisitos de conformidad?","Definición clara, gestión de datos, verificación, retroalimentación, aprobación final y documentación."]],
+14:[["¿Cuáles son los cinco estilos del modelo Thomas-Kilmann?","Evitar, acomodar, competir, compromiso y colaborar."],
+["¿Qué estrategia corresponde a un interesado de alto poder y alto interés?","Gestionarlo de cerca, involucrándolo en las decisiones clave."],
+["¿Cuáles son las cinco competencias de la IE según Goleman?","Autoconciencia, autorregulación, motivación, empatía y habilidades sociales."],
+["Diferencia entre retrospectiva y lecciones aprendidas.","La retrospectiva es continua, al final de cada sprint y para el equipo; las lecciones aprendidas son puntuales, al cierre de fase o proyecto y para toda la organización."],
+["¿Cuáles son los pilares empíricos de Scrum?","Transparencia, inspección y adaptación."]],
+15:[["¿Qué es el cambio organizacional?","La adaptación planeada de la organización a su ambiente interno y externo, que establece un nuevo comportamiento organizacional."],
+["¿Qué fuerzas impulsan el cambio?","Internas (tecnología, cambio de directiva, estrategias) y externas (decretos de gobierno, normas de calidad)."],
+["¿Qué tipos de resistencia al cambio existen?","Pasiva, activa y por inercia."],
+["¿Cuáles son las fases del ciclo PDCA?","Planificar, Hacer, Verificar y Actuar."],
+["¿Qué se hace en la fase Actuar?","Estandarizar la mejora con documentación de lo aprendido y de cómo se hizo."]]
+};
+
+for(const c of document.querySelectorAll('.stack td')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const gl=document.getElementById('gl'),gq=document.getElementById('gq'),gc=document.getElementById('gc');
+const drawG=()=>{const q=norm(gq.value.trim());const r=G.filter(t=>!q||norm(t[0]+' '+t[1]).includes(q));
+  gl.innerHTML=r.length?r.map(t=>`<div class="term"><b>${esc(t[0])}</b><span>${esc(t[1])}</span><br><small><a href="#s${t[2]}">Semana ${t[2]}</a></small></div>`).join(''):'<p class="empty">No hay términos que coincidan con la búsqueda.</p>';
+  gc.textContent=r.length+' de '+G.length+' términos';};
+gq.addEventListener('input',drawG);drawG();
+
+const qw=document.getElementById('qw'),ql=document.getElementById('ql'),qx=document.getElementById('qx');
+qw.innerHTML+=Object.keys(Q).map(k=>`<option value="${k}">Semana ${k}</option>`).join('');
+const drawQ=()=>{const w=+qw.value;ql.innerHTML=Object.keys(Q).filter(k=>!w||+k===w).map(k=>`<div class="qweek">Semana ${k}</div>`+Q[k].map(([p,a])=>`<details><summary>${esc(p)}</summary><div class="a">${esc(a)}</div></details>`).join('')).join('');qx.textContent='Mostrar todas';};
+qw.addEventListener('change',drawQ);
+qx.addEventListener('click',()=>{const ds=ql.querySelectorAll('details');const open=qx.textContent==='Mostrar todas';ds.forEach(d=>d.open=open);qx.textContent=open?'Ocultar todas':'Mostrar todas';});
+drawQ();
+}
+</script>
+</body>
+</html>
